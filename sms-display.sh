@@ -1,4 +1,9 @@
 #!/bin/bash
+# TODO
+# TUI before make_panes for number_select (ls ~/.local/share/sxmo/modem)
+# Allow user to input a number as well, not just select
+# Add more thorough phone number validation
+# If possible, colorize the log viewing output. I doubt less will render ANSI color codes though.
 
 number=$1
 
@@ -17,8 +22,8 @@ function prettify {
 function make_panes {
   tmux new-session -d -s sms "exec less +F /tmp/$number"
   tmux select-window -t sms:0
-	# This needs needs to be set as its own bash script, pane crashes when passing this as a oneliner to tmux exec
-	echo "while true; do read input; echo \$input | sxmo_modemsendsms.sh $number - ; done" > read.sh
+  # This needs needs to be set as its own bash script, pane crashes when passing this as a oneliner to tmux exec
+  echo "while true; do read input; echo \$input | sxmo_modemsendsms.sh $number - ; done" > read.sh
   tmux split-window -v -l 7 -t 0 "exec bash read.sh"
   tmux -2 attach-session -t sms
 }
