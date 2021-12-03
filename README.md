@@ -3,4 +3,4 @@ Better sms experience on SXMO with standard linux utilities
 
 
 Currently in development. Will later remake this project in rust or go so its more portable.
-Dependencies: tmux, whiptail, non-busybox less
+Dependencies: tmux, non-busybox less
