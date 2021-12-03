@@ -4,7 +4,7 @@
 # Add more thorough number verification
 
 number=$1
-path=~/tmp/sample-numbers/
+path=~/.local/share/sxmo/modem/
 
 
 function number_check {
