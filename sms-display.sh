@@ -15,12 +15,12 @@ function prettify {
 }
 
 function make_panes {
-  SESSION=sms
-  set -- $(stty size) # $1 = rows $2 = columns
-  tmux -2 new-session -d -s "$SESSION" -x "$2" -y "$(($1 - 1))" "exec less +F /tmp/$number" # $1 - 1 because tmux status line uses a row
-  tmux select-window -t $SESSION:0
-  tmux split-window -v -l 5 -t 0 "exec while true; do read input; echo $input > /tmp/text; cat /tmp/text | sxmo_modemsendsms.sh $number -; done"
-  tmux -2 attach-session -t $SESSION
+  tmux new-session -d -s sms "exec less +F /tmp/$number"
+  tmux select-window -t sms:0
+	# This needs needs to be set as its own bash script, pane crashes when passing this as a oneliner to tmux exec
+	echo "while true; do read input; echo \$input | sxmo_modemsendsms.sh $number - ; done" > read.sh
+  tmux split-window -v -l 7 -t 0 "exec bash read.sh"
+  tmux -2 attach-session -t sms
 }
 
 number_check
