@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # TODO
+# For until whiptails, ensure cancel will back out and wont attempt to verify
 # Change tmux pane to be on top, displaying $number
 
 number=$1
@@ -15,7 +16,6 @@ function number_check {
 	fi
 }
 
-# The ugliest function
 function make_tui {
 	echo '#!/bin/bash' > menu.sh
 	echo "path=$path" >> menu.sh
@@ -41,7 +41,9 @@ function make_tui {
 	echo 'elif [ "$CHOICE" == "0" ]; then' >> menu.sh
 	echo '	while true; do' >> menu.sh
 	echo '		number=$(whiptail --inputbox "Enter number Ex: +11231231234" 10 30 3>&1 1>&2 2>&3)' >> menu.sh
-	echo '		if [ "$(echo $number | wc -m)" == "10" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [ "$(echo $number | cut -c2-)" =~ $re ]; then' >> menu.sh
+	echo '		if [ "$(echo $number | wc -m)" == "10" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [[ "$(echo $number | cut -c2-)" == ?(-)+([0-9]) ]] ; then' >> menu.sh
+	echo '			break;' >> menu.sh
+	echo '		elif [ "$(echo $number)" == "" ]; then' >> menu.sh
 	echo '			break;' >> menu.sh
 	echo '		else' >> menu.sh
 	echo '			whiptail --msgbox "Invalid Number" 9 15' >> menu.sh
@@ -52,7 +54,7 @@ function make_tui {
 	echo "elif [ \"\$CHOICE\" == \"$counter\" ]; then" >> menu.sh
 	echo '	while true; do' >> menu.sh
 	echo '		number=$(whiptail --inputbox "Enter number Ex: +11231231234" 10 30 3>&1 1>&2 2>&3)' >> menu.sh
-	echo '		if [ "$(echo $number | wc -m)" == "10" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [ "$(echo $number | cut -c2-)" =~ $re ]; then' >> menu.sh
+	echo '		if [ "$(echo $number | wc -m)" == "10" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [[ "$(echo $number | cut -c2-)" == ?(-)+([0-9]) ]] ; then' >> menu.sh
 	echo '			break;' >> menu.sh
 	echo '		else' >> menu.sh
 	echo '			whiptail --msgbox "Invalid Number" 9 15' >> menu.sh
