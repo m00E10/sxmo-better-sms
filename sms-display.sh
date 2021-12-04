@@ -41,7 +41,7 @@ function make_tui {
 	echo 'elif [ "$CHOICE" == "0" ]; then' >> menu.sh
 	echo '	while true; do' >> menu.sh
 	echo '		number=$(whiptail --inputbox "Enter number Ex: +11231231234" 10 30 3>&1 1>&2 2>&3)' >> menu.sh
-	echo '		if [ "$(echo $number | wc -m)" == "10" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [[ "$(echo $number | cut -c2-)" == ?(-)+([0-9]) ]] ; then' >> menu.sh
+	echo '		if [ "$(echo $number | wc -m)" == "13" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [[ "$(echo $number | cut -c2-)" == ?(-)+([0-9]) ]] ; then' >> menu.sh
 	echo '			break;' >> menu.sh
 	echo '		elif [ "$(echo $number)" == "" ]; then' >> menu.sh
 	echo '			break;' >> menu.sh
@@ -54,7 +54,9 @@ function make_tui {
 	echo "elif [ \"\$CHOICE\" == \"$counter\" ]; then" >> menu.sh
 	echo '	while true; do' >> menu.sh
 	echo '		number=$(whiptail --inputbox "Enter number Ex: +11231231234" 10 30 3>&1 1>&2 2>&3)' >> menu.sh
-	echo '		if [ "$(echo $number | wc -m)" == "10" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [[ "$(echo $number | cut -c2-)" == ?(-)+([0-9]) ]] ; then' >> menu.sh
+	echo '		if [ "$(echo $number | wc -m)" == "13" ] && [ "$(echo $number | cut -c 1)" == "+" ] && [[ "$(echo $number | cut -c2-)" == ?(-)+([0-9]) ]] ; then' >> menu.sh
+	echo '			break;' >> menu.sh
+	echo '		elif [ "$(echo $number)" == "" ]; then' >> menu.sh
 	echo '			break;' >> menu.sh
 	echo '		else' >> menu.sh
 	echo '			whiptail --msgbox "Invalid Number" 9 15' >> menu.sh
