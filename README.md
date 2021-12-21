@@ -4,7 +4,7 @@ Better sms experience on SXMO with standard linux utilities
 
 Currently in development. Will later remake this project in rust or go so its more portable.
 Dependencies: tmux, non-busybox less
-<img src="sc1.png" alt="drawing" width="200"/>
-![Number List](sc1.png "Number List")
-![Text view 1](sc2.png "Text view 1")
-![Text view 2](sc3.png "Text view 2")
+
+<img src="sc1.png" alt="Number List" width="400"/>
+<img src="sc2.png" alt="Text view 1" width="400"/>
+<img src="sc3.png" alt="Text view 2" width="400"/>
